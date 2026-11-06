@@ -297,7 +297,7 @@
       <div class="etoile">🎄</div>
       <h2 id="ok-titre">Merci !</h2>
       <div id="ok-texte"></div>
-      <p class="petit">Un email de confirmation vient de vous être envoyé. Un empêchement ? Répondez simplement à cet email.</p>
+      <p class="petit">Un email de confirmation vient de vous être envoyé. Un empêchement ou une modification ? Envoyez un message à Loïc à <a href="mailto:loic.kata@gmail.com">loic.kata@gmail.com</a>.</p>
       <button class="btn" id="autre">Inscrire une autre personne</button>
     </div>
   </section>
@@ -320,7 +320,7 @@
 <script>
 /* ===== RÉGLAGES ===== */
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxiC7iQ-JQFVGAWdHvn1w12eqpdEA3_vws22JMRnpceQiOtkecysXjaadyjmgIS7jJQ/exec';      // ← coller ici l'URL de l'application Web Google (se termine par /exec)
-const CONTACT_EMAIL = '';   // facultatif : email de contact UCAB affiché dans la mention RGPD
+const CONTACT_EMAIL = 'loic.kata@gmail.com';   // facultatif : email de contact UCAB affiché dans la mention RGPD
 /* ==================== */
 
 const DEMO = {
@@ -471,7 +471,7 @@ $('#form').addEventListener('submit', async e => {
   const payload = {
     prenom: v('prenom'), nom: v('nom').toUpperCase(), email: v('email'), tel: v('tel'),
     accompagne: $('#accompagne').checked, accompagnant: $('#accompagne').checked ? v('accompagnant') : '',
-    commentaire: v('commentaire'), creneaux: [...selection], consentement: true, siteweb: v('siteweb'),
+    commentaire: v('commentaire'), creneaux: data.creneaux.map(c => c.id).filter(id => selection.has(id)), consentement: true, siteweb: v('siteweb'),
   };
 
   const bouton = $('#envoyer');
@@ -491,6 +491,8 @@ $('#form').addEventListener('submit', async e => {
     const parId = id => data.creneaux.find(c => c.id === id);
     $('#ok-titre').textContent = 'Merci ' + payload.prenom + ' !';
     let html = '';
+    const ordre = id => data.creneaux.findIndex(c => c.id === id);
+    res.ajoutes.sort((a, b) => ordre(a) - ordre(b));
     if (res.ajoutes.length) html += `<p>Vous êtes inscrit·e sur ${res.ajoutes.length} créneau${res.ajoutes.length > 1 ? 'x' : ''} :</p><ul>${res.ajoutes.map(id => `<li>${esc(libelle(parId(id)))}</li>`).join('')}</ul>`;
     if (res.deja.length) html += `<p class="petit">Vous étiez déjà inscrit·e sur : ${res.deja.map(id => esc(libelle(parId(id)))).join(' ; ')}.</p>`;
     $('#ok-texte').innerHTML = html;
