@@ -1,0 +1,509 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bénévoles Marché de Noël 2026 – UCAB</title>
+<meta name="description" content="Inscrivez-vous comme bénévole pour le Marché de Noël 2026 de Belley avec l'UCAB.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --vert: #1f4d3a; --vert-2: #2f6b4f; --vert-clair: #e4efe8;
+    --rouge: #b8322a; --rouge-clair: #f8e1de;
+    --or: #e2a93b; --or-clair: #fbefd6;
+    --creme: #fbf6ee; --carte: #ffffff; --texte: #23302a; --doux: #5f6b64; --bord: #e3dccd;
+    --rayon: 14px; color-scheme: light;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--creme); color: var(--texte); font: 16px/1.5 "DM Sans", system-ui, sans-serif; }
+  h1, h2, h3 { font-family: "Fraunces", Georgia, serif; line-height: 1.15; margin: 0; }
+  button { font: inherit; cursor: pointer; }
+  .wrap { max-width: 920px; margin: 0 auto; padding: 0 16px; }
+
+  /* En-tête */
+  .hero { background: radial-gradient(120% 90% at 80% 0%, #2a6247 0%, var(--vert) 55%, #173a2c 100%); color: #fff; overflow: hidden; }
+  .hero-top { display: flex; align-items: center; gap: 12px; padding-top: 18px; }
+  .logo { height: 52px; width: auto; background: #fff; border-radius: 10px; padding: 4px 8px; }
+  .hero-top span { font-size: 13px; opacity: .85; letter-spacing: .02em; }
+  .hero-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 24px; align-items: end; padding: 22px 0 0; }
+  .eyebrow { display: inline-block; background: var(--rouge); color: #fff; font-weight: 700; font-size: 13px; text-transform: uppercase; letter-spacing: .08em; padding: 4px 10px; border-radius: 99px; margin: 0 0 12px; }
+  .hero h1 { font-size: clamp(34px, 6vw, 52px); }
+  .lead { font-size: 17px; opacity: .92; margin: 12px 0 18px; max-width: 34ch; }
+  .steps { list-style: none; padding: 0; margin: 0 0 28px; display: grid; gap: 8px; counter-reset: s; }
+  .steps li { counter-increment: s; display: flex; align-items: center; gap: 10px; font-weight: 500; }
+  .steps li::before { content: counter(s); width: 26px; height: 26px; flex: none; border-radius: 50%; background: var(--or); color: var(--vert); font-weight: 700; display: grid; place-items: center; font-size: 14px; }
+  .illu svg { display: block; width: 100%; height: auto; }
+
+  .demo { background: var(--or-clair); border-bottom: 1px solid #ecd3a0; color: #6b4b10; font-size: 14px; padding: 10px 0; }
+
+  /* Navigation jours */
+  .jours-nav { position: sticky; top: 0; z-index: 5; background: rgba(251,246,238,.94); backdrop-filter: blur(6px); border-bottom: 1px solid var(--bord); }
+  .jours-nav .wrap { display: flex; gap: 8px; overflow-x: auto; padding-top: 10px; padding-bottom: 10px; scrollbar-width: none; }
+  .jours-nav a { flex: none; text-decoration: none; color: var(--vert); background: #fff; border: 1px solid var(--bord); border-radius: 99px; padding: 6px 14px; font-size: 14px; font-weight: 500; }
+  .jours-nav a b { color: var(--rouge); margin-left: 4px; }
+
+  main { padding: 26px 0 120px; }
+  .intro { margin: 0 0 6px; color: var(--doux); }
+  .jour { margin-top: 28px; scroll-margin-top: 64px; }
+  .jour h2 { font-size: 24px; color: var(--vert); display: flex; align-items: baseline; gap: 10px; margin-bottom: 12px; }
+  .jour h2 small { font: 500 14px "DM Sans", sans-serif; color: var(--doux); }
+  .slots { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; }
+
+  /* Carte créneau */
+  .slot { position: relative; display: flex; gap: 12px; background: var(--carte); border: 1.5px solid var(--bord); border-radius: var(--rayon); padding: 14px; cursor: pointer; transition: border-color .15s, box-shadow .15s, transform .15s; }
+  .slot:hover { border-color: #c9bfa9; transform: translateY(-1px); }
+  .slot input { position: absolute; opacity: 0; pointer-events: none; }
+  .check { flex: none; width: 24px; height: 24px; border-radius: 7px; border: 2px solid #c4baa6; display: grid; place-items: center; margin-top: 2px; transition: .15s; }
+  .check svg { width: 14px; height: 14px; opacity: 0; transition: .15s; }
+  .slot input:checked ~ .check { background: var(--vert); border-color: var(--vert); }
+  .slot input:checked ~ .check svg { opacity: 1; }
+  .slot:has(input:checked) { border-color: var(--vert); box-shadow: 0 0 0 3px var(--vert-clair); background: #fbfdfb; }
+  .slot input:focus-visible ~ .check { outline: 3px solid var(--or); outline-offset: 2px; }
+  .slot-body { display: grid; gap: 4px; min-width: 0; }
+  .slot-time { font-weight: 700; font-size: 17px; }
+  .slot-time em { font-style: normal; font-weight: 500; font-size: 13px; color: var(--doux); margin-left: 6px; }
+  .slot-mission { font-size: 15px; }
+  .slot-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 4px; font-size: 13px; color: var(--doux); }
+  .tag { font-size: 12px; font-weight: 700; padding: 2px 8px; border-radius: 99px; }
+  .t-installation { background: var(--vert-clair); color: var(--vert); }
+  .t-buvette { background: var(--rouge-clair); color: var(--rouge); }
+  .t-animation, .t-accueil { background: var(--or-clair); color: #8a5d0c; }
+  .t-desinstallation { background: #e6e8ef; color: #3c4560; }
+  .besoin { color: var(--rouge); font-weight: 700; }
+
+  /* Barre de sélection */
+  .barre { position: fixed; left: 0; right: 0; bottom: 0; z-index: 10; background: var(--vert); color: #fff; box-shadow: 0 -6px 24px rgba(0,0,0,.15); transform: translateY(110%); transition: transform .25s; }
+  .barre.visible { transform: none; }
+  .barre .wrap { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-top: 12px; padding-bottom: calc(12px + env(safe-area-inset-bottom)); }
+  .btn { border: 0; border-radius: 99px; padding: 12px 22px; font-weight: 700; background: var(--or); color: var(--vert); transition: filter .15s; }
+  .btn:hover { filter: brightness(1.05); }
+  .btn:disabled { opacity: .6; cursor: wait; }
+  .btn-ghost { background: transparent; color: var(--vert); border: 1.5px solid var(--bord); }
+  .btn-rouge { background: var(--rouge); color: #fff; }
+
+  /* Formulaire */
+  .panneau { background: #fff; border: 1px solid var(--bord); border-radius: 18px; padding: 22px; }
+  .panneau h2 { font-size: 26px; color: var(--vert); margin-bottom: 6px; }
+  .recap { display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0 22px; padding: 0; list-style: none; }
+  .recap li { background: var(--vert-clair); color: var(--vert); border-radius: 8px; padding: 5px 10px; font-size: 13px; font-weight: 500; }
+  .champs { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .champ { display: grid; gap: 6px; }
+  .champ.large { grid-column: 1 / -1; }
+  label.lbl { font-weight: 700; font-size: 14px; }
+  .opt { font-weight: 400; color: var(--doux); }
+  input[type=text], input[type=email], input[type=tel], textarea { width: 100%; font: inherit; color: inherit; background: var(--creme); border: 1.5px solid var(--bord); border-radius: 10px; padding: 11px 12px; }
+  input:focus, textarea:focus { outline: none; border-color: var(--vert); background: #fff; box-shadow: 0 0 0 3px var(--vert-clair); }
+  #nom { text-transform: uppercase; }
+  textarea { min-height: 84px; resize: vertical; }
+  .case { display: flex; gap: 10px; align-items: flex-start; font-size: 15px; cursor: pointer; }
+  .case input { width: 20px; height: 20px; margin: 2px 0 0; accent-color: var(--vert); flex: none; }
+  .petit { font-size: 13px; color: var(--doux); }
+  .pot { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+  .actions { display: flex; flex-wrap: wrap; gap: 10px; justify-content: space-between; align-items: center; margin-top: 20px; }
+  .erreur { background: var(--rouge-clair); color: var(--rouge); border-radius: 10px; padding: 10px 12px; font-weight: 500; }
+  .ok { text-align: center; padding: 34px 22px; }
+  .ok .etoile { font-size: 46px; }
+  .ok ul { text-align: left; display: inline-block; margin: 14px auto; }
+  .chargement { color: var(--doux); padding: 30px 0; text-align: center; }
+
+  footer { border-top: 1px solid var(--bord); color: var(--doux); font-size: 13px; padding: 22px 0 110px; }
+
+  @media (max-width: 680px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 0; }
+    .illu { margin: 0 -16px; }
+    .champs { grid-template-columns: 1fr; }
+    .panneau { padding: 18px 16px; }
+    .actions .btn { flex: 1; }
+  }
+  /* Ordinateur : les jours côte à côte, en colonnes */
+  main.wrap { max-width: 1320px; }
+  .panneau { max-width: 760px; margin: 0 auto; }
+  @media (min-width: 1100px) {
+    .jours-nav { display: none; }
+    #jours { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 14px; align-items: start; margin-top: 18px; }
+    .jour { margin-top: 0; background: #f3ece0; border-radius: 16px; padding: 12px; }
+    .jour h2 { font-size: 19px; flex-direction: column; gap: 2px; padding: 4px 4px 10px; margin-bottom: 10px; border-bottom: 2px solid var(--or); }
+    .jour h2 small { font-size: 13px; }
+    .slots { grid-template-columns: 1fr; gap: 10px; }
+    .slot { padding: 12px; gap: 10px; }
+    .slot-time { font-size: 16px; }
+    .slot-time em { display: block; margin: 0; }
+    .slot-mission { font-size: 14px; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-top">
+      <img src="logo-ucab.png" alt="UCAB" class="logo" onerror="this.remove()">
+      <span>Union des Commerçants et Artisans de Belley</span>
+    </div>
+    <div class="hero-grid">
+      <div>
+        <p class="eyebrow">Appel aux bénévoles</p>
+        <h1>Marché de Noël 2026</h1>
+        <p class="lead">Du 8 au 13 décembre, on a besoin de vous pour installer, tenir la buvette et animer le marché. Cochez autant de créneaux que vous voulez&nbsp;!</p>
+        <ol class="steps">
+          <li>Choisissez vos créneaux</li>
+          <li>Laissez vos coordonnées</li>
+          <li>Recevez la confirmation par email</li>
+        </ol>
+      </div>
+      <div class="illu" aria-hidden="true">
+        <svg viewBox="0 0 360 260" xmlns="http://www.w3.org/2000/svg">
+          <!-- flocons -->
+          <g fill="#fff" opacity=".75">
+            <circle cx="30" cy="40" r="2"/><circle cx="70" cy="22" r="1.5"/><circle cx="140" cy="30" r="2.2"/>
+            <circle cx="230" cy="20" r="1.6"/><circle cx="300" cy="44" r="2"/><circle cx="345" cy="18" r="1.4"/>
+            <circle cx="50" cy="90" r="1.6"/><circle cx="262" cy="80" r="1.8"/><circle cx="20" cy="150" r="2"/>
+            <circle cx="350" cy="110" r="1.5"/><circle cx="110" cy="70" r="1.3"/>
+          </g>
+          <!-- sapin -->
+          <rect x="331" y="222" width="8" height="14" fill="#5e3a24"/>
+          <polygon points="335,118 314,160 356,160" fill="#3c7d5b"/>
+          <polygon points="335,140 309,190 361,190" fill="#346f50"/>
+          <polygon points="335,166 304,226 366,226" fill="#2f6b4f"/>
+          <path d="M322 144 l13-24 13 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" opacity=".85"/>
+          <!-- sol enneigé -->
+          <path d="M0 226 Q90 206 180 220 T360 214 V260 H0Z" fill="#f4f1ea"/>
+          <!-- chalet -->
+          <rect x="110" y="120" width="150" height="100" fill="#9b6a43"/>
+          <g stroke="#845a37" stroke-width="1.5">
+            <line x1="110" y1="134" x2="260" y2="134"/><line x1="110" y1="148" x2="260" y2="148"/>
+            <line x1="110" y1="204" x2="260" y2="204"/>
+          </g>
+          <polygon points="95,128 185,62 275,128" fill="#5e3a24"/>
+          <path d="M92 130 L185 60 L278 130" fill="none" stroke="#fff" stroke-width="10" stroke-linejoin="round" stroke-linecap="round"/>
+          <!-- étoile au sommet -->
+          <polygon points="185,38 189,49 200,49 191,56 194,67 185,60 176,67 179,56 170,49 181,49" fill="#f2c14e"/>
+          <!-- comptoir éclairé + auvent -->
+          <rect x="135" y="152" width="100" height="44" rx="2" fill="#ffd98a"/>
+          <g>
+            <rect x="130" y="140" width="22" height="12" fill="#c0392b"/><rect x="152" y="140" width="22" height="12" fill="#fff"/>
+            <rect x="174" y="140" width="22" height="12" fill="#c0392b"/><rect x="196" y="140" width="22" height="12" fill="#fff"/>
+            <rect x="218" y="140" width="22" height="12" fill="#c0392b"/>
+          </g>
+          <path d="M130 152 q11 9 22 0 q11 9 22 0 q11 9 22 0 q11 9 22 0 q11 9 22 0Z" fill="#c0392b"/>
+          <rect x="128" y="194" width="114" height="7" rx="2" fill="#5e3a24"/>
+          <!-- vin chaud sur le comptoir -->
+          <rect x="150" y="183" width="9" height="11" rx="2" fill="#fff"/><rect x="164" y="183" width="9" height="11" rx="2" fill="#fff"/>
+          <path d="M154 179 q-3-5 0-9 M168 179 q3-5 0-9" stroke="#fff" stroke-width="1.5" fill="none" opacity=".8"/>
+          <!-- guirlande lumineuse -->
+          <path d="M117 131 Q150 150 185 134 Q222 150 262 130" fill="none" stroke="#2f6b4f" stroke-width="2.5"/>
+          <g>
+            <circle cx="130" cy="139" r="3.5" fill="#f2c14e"/><circle cx="146" cy="143" r="3.5" fill="#e74c3c"/>
+            <circle cx="162" cy="142" r="3.5" fill="#fff"/><circle cx="177" cy="137" r="3.5" fill="#f2c14e"/>
+            <circle cx="195" cy="138" r="3.5" fill="#e74c3c"/><circle cx="212" cy="142" r="3.5" fill="#fff"/>
+            <circle cx="229" cy="142" r="3.5" fill="#f2c14e"/><circle cx="246" cy="137" r="3.5" fill="#e74c3c"/>
+          </g>
+          <!-- cadeaux -->
+          <rect x="236" y="206" width="20" height="16" fill="#c0392b"/><rect x="244" y="206" width="4" height="16" fill="#f2c14e"/>
+          <rect x="216" y="212" width="16" height="11" fill="#3c7d5b"/><rect x="222" y="212" width="4" height="11" fill="#fff"/>
+          <!-- échelle -->
+          <g stroke="#d2a466" stroke-width="4" stroke-linecap="round">
+            <line x1="62" y1="225" x2="98" y2="118"/><line x1="80" y1="225" x2="114" y2="120"/>
+            <line x1="67" y1="209" x2="85" y2="209"/><line x1="73" y1="193" x2="90" y2="193"/>
+            <line x1="78" y1="177" x2="95" y2="178"/><line x1="84" y1="161" x2="100" y2="162"/>
+            <line x1="89" y1="145" x2="105" y2="146"/>
+          </g>
+          <!-- bénévole sur l'échelle -->
+          <g stroke-linecap="round">
+            <line x1="91" y1="142" x2="88" y2="161" stroke="#33384a" stroke-width="5"/>
+            <line x1="99" y1="142" x2="99" y2="161" stroke="#33384a" stroke-width="5"/>
+            <rect x="85" y="115" width="20" height="30" rx="8" fill="#2f6b4f"/>
+            <line x1="102" y1="121" x2="116" y2="130" stroke="#2f6b4f" stroke-width="6"/>
+            <circle cx="117" cy="131" r="3.2" fill="#f1c29b"/>
+            <line x1="88" y1="122" x2="80" y2="134" stroke="#2f6b4f" stroke-width="6"/>
+            <circle cx="95" cy="105" r="8.5" fill="#f1c29b"/>
+            <path d="M86 103 Q95 90 104 103Z" fill="#c0392b"/>
+            <path d="M88 96 Q100 82 111 90" fill="none" stroke="#c0392b" stroke-width="5"/>
+            <circle cx="112" cy="91" r="3.5" fill="#fff"/>
+            <rect x="85" y="101" width="20" height="4" rx="2" fill="#fff"/>
+          </g>
+          <!-- bénévole au sol avec une boule -->
+          <g stroke-linecap="round">
+            <line x1="281" y1="202" x2="280" y2="223" stroke="#33384a" stroke-width="6"/>
+            <line x1="291" y1="202" x2="293" y2="223" stroke="#33384a" stroke-width="6"/>
+            <rect x="273" y="168" width="26" height="38" rx="10" fill="#c0392b"/>
+            <line x1="277" y1="176" x2="262" y2="160" stroke="#c0392b" stroke-width="6"/>
+            <circle cx="260" cy="158" r="3.2" fill="#f1c29b"/>
+            <circle cx="257" cy="151" r="6.5" fill="#f2c14e"/><rect x="255" y="143" width="4" height="3" fill="#9aa"/>
+            <line x1="296" y1="177" x2="301" y2="196" stroke="#c0392b" stroke-width="6"/>
+            <rect x="275" y="165" width="22" height="7" rx="3" fill="#f2c14e"/>
+            <circle cx="286" cy="155" r="9" fill="#d9a07a"/>
+            <path d="M276 152 Q286 136 296 152Z" fill="#2f6b4f"/>
+            <rect x="276" y="149" width="20" height="4" rx="2" fill="#fff"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="demo" id="demo" hidden><div class="wrap">Mode démonstration : les inscriptions ne sont pas enregistrées. Collez l'URL du script Google dans <code>SCRIPT_URL</code> pour activer.</div></div>
+
+<nav class="jours-nav" id="nav" hidden aria-label="Jours"><div class="wrap" id="nav-liens"></div></nav>
+
+<main class="wrap">
+  <section id="etape-creneaux">
+    <p class="intro">Pas de limite de places : inscrivez-vous sur tous les créneaux qui vous arrangent.</p>
+    <div id="jours"><p class="chargement">Chargement des créneaux…</p></div>
+  </section>
+
+  <section id="etape-form" hidden>
+    <div class="panneau">
+      <h2>Vos coordonnées</h2>
+      <p class="petit">Vous avez choisi :</p>
+      <ul class="recap" id="recap"></ul>
+      <form id="form" novalidate>
+        <div class="champs">
+          <div class="champ"><label class="lbl" for="prenom">Prénom</label><input type="text" id="prenom" autocomplete="given-name" maxlength="60" required></div>
+          <div class="champ"><label class="lbl" for="nom">NOM</label><input type="text" id="nom" autocomplete="family-name" maxlength="60" required></div>
+          <div class="champ"><label class="lbl" for="email">Email</label><input type="email" id="email" autocomplete="email" maxlength="120" required></div>
+          <div class="champ"><label class="lbl" for="tel">Téléphone</label><input type="tel" id="tel" autocomplete="tel" maxlength="25" required placeholder="06 12 34 56 78"></div>
+          <div class="champ large">
+            <label class="case"><input type="checkbox" id="accompagne"> Je viens accompagné·e d’une autre personne</label>
+          </div>
+          <div class="champ large" id="bloc-accomp" hidden>
+            <label class="lbl" for="accompagnant">Prénom et NOM de la personne qui m’accompagne</label>
+            <input type="text" id="accompagnant" maxlength="120" placeholder="Ex. : Marie DUPONT">
+          </div>
+          <div class="champ large">
+            <label class="lbl" for="commentaire">Commentaire <span class="opt">(facultatif)</span></label>
+            <textarea id="commentaire" maxlength="500" placeholder="Ex. : je viens avec ma voiture, une remorque, une échelle…"></textarea>
+          </div>
+          <div class="pot" aria-hidden="true"><label>Site web <input type="text" id="siteweb" tabindex="-1" autocomplete="off"></label></div>
+          <div class="champ large">
+            <label class="case"><input type="checkbox" id="consentement" required> <span>J’accepte que l’UCAB utilise ces informations pour organiser les bénévoles du Marché de Noël 2026. <span class="petit">(voir en bas de page)</span></span></label>
+          </div>
+        </div>
+        <p class="erreur" id="erreur" hidden role="alert"></p>
+        <div class="actions">
+          <button type="button" class="btn btn-ghost" id="retour">← Modifier mes créneaux</button>
+          <button type="submit" class="btn btn-rouge" id="envoyer">Valider mon inscription</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <section id="etape-ok" hidden>
+    <div class="panneau ok">
+      <div class="etoile">🎄</div>
+      <h2 id="ok-titre">Merci !</h2>
+      <div id="ok-texte"></div>
+      <p class="petit">Un email de confirmation vient de vous être envoyé. Un empêchement ? Répondez simplement à cet email.</p>
+      <button class="btn" id="autre">Inscrire une autre personne</button>
+    </div>
+  </section>
+</main>
+
+<div class="barre" id="barre">
+  <div class="wrap">
+    <span id="compteur">0 créneau sélectionné</span>
+    <button class="btn" id="continuer">Continuer →</button>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <p><strong>Vos données personnelles.</strong> Les informations saisies (nom, coordonnées, créneaux, commentaire) servent uniquement à l’UCAB pour organiser les bénévoles du Marché de Noël 2026. Elles ne sont ni publiées ni transmises à des tiers, et seront supprimées au plus tard le 31 janvier 2027. Seul le nombre d’inscrits par créneau est affiché sur cette page. Pour consulter, modifier ou supprimer vos données, répondez à l’email de confirmation<span id="contact-rgpd"></span>.</p>
+    <p>Organisé par l’UCAB – Union des Commerçants et Artisans de Belley.</p>
+  </div>
+</footer>
+
+<script>
+/* ===== RÉGLAGES ===== */
+const SCRIPT_URL = '';      // ← coller ici l'URL de l'application Web Google (se termine par /exec)
+const CONTACT_EMAIL = '';   // facultatif : email de contact UCAB affiché dans la mention RGPD
+/* ==================== */
+
+const DEMO = {
+  jours: [
+    { id: '2026-12-08', label: 'Mardi 8 décembre', court: 'Mar 8 déc' },
+    { id: '2026-12-10', label: 'Jeudi 10 décembre', court: 'Jeu 10 déc' },
+    { id: '2026-12-11', label: 'Vendredi 11 décembre', court: 'Ven 11 déc' },
+    { id: '2026-12-12', label: 'Samedi 12 décembre', court: 'Sam 12 déc' },
+    { id: '2026-12-13', label: 'Dimanche 13 décembre', court: 'Dim 13 déc' },
+  ],
+  creneaux: [
+    ['s01','2026-12-08','12:00','18:00','Installation association, tables, bancs, bacs de tri',4],
+    ['s02','2026-12-08','18:00','23:00','Défilé des enfants + soirée et rangement',2],
+    ['s03','2026-12-10','09:00','12:00','Installation marché salle des fêtes + déco chalets',3],
+    ['s04','2026-12-10','13:45','18:45','Installation buvette + déco extérieures',0],
+    ['s05','2026-12-11','07:45','11:45','Accueil exposants + lancement buvette',1],
+    ['s06','2026-12-11','12:00','14:00','Buvette',2],
+    ['s07','2026-12-11','14:00','19:00','Buvette',0],
+    ['s08','2026-12-11','19:00','23:30','Buvette soirée DJ',5],
+    ['s09','2026-12-12','08:45','12:00','Buvette',1],
+    ['s10','2026-12-12','12:00','14:00','Buvette + installation biathlon',0],
+    ['s11','2026-12-12','14:00','19:00','Buvette + installation et vente biathlon',3],
+    ['s12','2026-12-13','09:00','13:00','Buvette + vente biathlon',2],
+    ['s13','2026-12-13','13:00','18:00','Buvette + vente biathlon',1],
+    ['s14','2026-12-13','18:00','22:00','Désinstallation',0],
+  ].map(([id, jour, debut, fin, mission, inscrits]) => ({ id, jour, debut, fin, mission, inscrits })),
+};
+
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]));
+const hh = t => t.replace(':', 'h');
+const COCHE = '<svg viewBox="0 0 16 16"><path d="M3 8.5l3.2 3L13 4.5" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+let data = null;
+const selection = new Set();
+
+function duree(c) {
+  const m = t => +t.slice(0, 2) * 60 + +t.slice(3);
+  const d = m(c.fin) - m(c.debut), h = Math.floor(d / 60), mn = d % 60;
+  return h + ' h' + (mn ? ' ' + String(mn).padStart(2, '0') : '');
+}
+function typeMission(m) {
+  const s = m.toLowerCase();
+  if (s.includes('désinstall')) return ['desinstallation', 'Désinstallation'];
+  if (s.startsWith('install')) return ['installation', 'Installation'];
+  if (s.startsWith('accueil')) return ['accueil', 'Accueil'];
+  if (s.startsWith('buvette')) return ['buvette', 'Buvette'];
+  return ['animation', 'Animation'];
+}
+function compteTexte(n) {
+  if (!n) return '<span class="besoin">On a besoin de vous !</span>';
+  return n + (n > 1 ? ' bénévoles inscrits' : ' bénévole inscrit');
+}
+const jourDe = c => data.jours.find(j => j.id === c.jour);
+const libelle = c => jourDe(c).court + ' · ' + hh(c.debut) + '–' + hh(c.fin) + ' · ' + c.mission;
+
+async function charger() {
+  $('#jours').innerHTML = '<p class="chargement">Chargement des créneaux…</p>';
+  if (!SCRIPT_URL) { $('#demo').hidden = false; data = DEMO; return afficher(); }
+  try {
+    const r = await fetch(SCRIPT_URL + '?t=' + Date.now());
+    data = await r.json();
+    if (!data.ok) throw new Error();
+    afficher();
+  } catch (e) {
+    $('#jours').innerHTML = '<p class="erreur">Impossible de charger les créneaux pour le moment. <button class="btn btn-ghost" onclick="charger()">Réessayer</button></p>';
+  }
+}
+
+function afficher() {
+  $('#nav').hidden = false;
+  $('#nav-liens').innerHTML = data.jours.map(j => {
+    const vides = data.creneaux.filter(c => c.jour === j.id && !c.inscrits).length;
+    return `<a href="#j-${j.id}">${esc(j.court)}${vides ? `<b title="${vides} créneau(x) sans bénévole">•</b>` : ''}</a>`;
+  }).join('');
+  $('#jours').innerHTML = data.jours.map(j => {
+    const cs = data.creneaux.filter(c => c.jour === j.id);
+    return `<div class="jour" id="j-${j.id}">
+      <h2>${esc(j.label)} <small>${cs.length} créneau${cs.length > 1 ? 'x' : ''}</small></h2>
+      <div class="slots">${cs.map(c => {
+        const [cls, nomType] = typeMission(c.mission);
+        return `<label class="slot">
+          <input type="checkbox" value="${esc(c.id)}" ${selection.has(c.id) ? 'checked' : ''}>
+          <span class="check">${COCHE}</span>
+          <span class="slot-body">
+            <span class="slot-time">${hh(c.debut)} – ${hh(c.fin)}<em>${duree(c)}</em></span>
+            <span class="slot-mission">${esc(c.mission)}</span>
+            <span class="slot-meta"><span class="tag t-${cls}">${nomType}</span>${compteTexte(c.inscrits)}</span>
+          </span>
+        </label>`;
+      }).join('')}</div>
+    </div>`;
+  }).join('');
+  majBarre();
+}
+
+function majBarre() {
+  const n = selection.size;
+  $('#compteur').textContent = n + (n > 1 ? ' créneaux sélectionnés' : ' créneau sélectionné');
+  $('#barre').classList.toggle('visible', n > 0 && !$('#etape-creneaux').hidden);
+}
+
+function montrer(etape) {
+  ['creneaux', 'form', 'ok'].forEach(e => $('#etape-' + e).hidden = e !== etape);
+  $('#nav').hidden = etape !== 'creneaux' || !data;
+  majBarre();
+  window.scrollTo({ top: etape === 'creneaux' ? 0 : $('main').offsetTop - 10, behavior: 'smooth' });
+}
+
+$('#jours').addEventListener('change', e => {
+  if (e.target.type !== 'checkbox') return;
+  e.target.checked ? selection.add(e.target.value) : selection.delete(e.target.value);
+  majBarre();
+});
+
+$('#continuer').addEventListener('click', () => {
+  const choisis = data.creneaux.filter(c => selection.has(c.id));
+  $('#recap').innerHTML = choisis.map(c => `<li>${esc(libelle(c))}</li>`).join('');
+  montrer('form');
+  setTimeout(() => $('#prenom').focus({ preventScroll: true }), 300);
+});
+$('#retour').addEventListener('click', () => montrer('creneaux'));
+$('#accompagne').addEventListener('change', e => {
+  $('#bloc-accomp').hidden = !e.target.checked;
+  if (e.target.checked) $('#accompagnant').focus();
+});
+$('#autre').addEventListener('click', () => {
+  $('#form').reset(); $('#bloc-accomp').hidden = true; selection.clear();
+  montrer('creneaux'); charger();
+});
+
+function erreur(msg, champ) {
+  $('#erreur').textContent = msg; $('#erreur').hidden = false;
+  if (champ) $(champ).focus();
+}
+
+$('#form').addEventListener('submit', async e => {
+  e.preventDefault();
+  $('#erreur').hidden = true;
+  const v = id => $('#' + id).value.trim();
+  if (!v('prenom')) return erreur('Merci d’indiquer votre prénom.', '#prenom');
+  if (!v('nom')) return erreur('Merci d’indiquer votre nom.', '#nom');
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v('email'))) return erreur('Adresse email invalide.', '#email');
+  const chiffres = v('tel').replace(/\D/g, '');
+  if (chiffres.length < 9 || chiffres.length > 15) return erreur('Numéro de téléphone invalide.', '#tel');
+  if ($('#accompagne').checked && v('accompagnant').length < 3) return erreur('Indiquez le prénom et le NOM de la personne qui vous accompagne.', '#accompagnant');
+  if (!$('#consentement').checked) return erreur('Merci de cocher la case d’accord pour l’utilisation de vos données.', '#consentement');
+
+  const payload = {
+    prenom: v('prenom'), nom: v('nom').toUpperCase(), email: v('email'), tel: v('tel'),
+    accompagne: $('#accompagne').checked, accompagnant: $('#accompagne').checked ? v('accompagnant') : '',
+    commentaire: v('commentaire'), creneaux: [...selection], consentement: true, siteweb: v('siteweb'),
+  };
+
+  const bouton = $('#envoyer');
+  bouton.disabled = true; bouton.textContent = 'Envoi en cours…';
+  try {
+    let res;
+    if (!SCRIPT_URL) {
+      await new Promise(r => setTimeout(r, 700));
+      res = { ok: true, ajoutes: payload.creneaux, deja: [] };
+    } else {
+      const r = await fetch(SCRIPT_URL, {
+        method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(payload),
+      });
+      res = await r.json();
+    }
+    if (!res.ok) throw new Error(res.erreur || 'Une erreur est survenue.');
+    const parId = id => data.creneaux.find(c => c.id === id);
+    $('#ok-titre').textContent = 'Merci ' + payload.prenom + ' !';
+    let html = '';
+    if (res.ajoutes.length) html += `<p>Vous êtes inscrit·e sur ${res.ajoutes.length} créneau${res.ajoutes.length > 1 ? 'x' : ''} :</p><ul>${res.ajoutes.map(id => `<li>${esc(libelle(parId(id)))}</li>`).join('')}</ul>`;
+    if (res.deja.length) html += `<p class="petit">Vous étiez déjà inscrit·e sur : ${res.deja.map(id => esc(libelle(parId(id)))).join(' ; ')}.</p>`;
+    $('#ok-texte').innerHTML = html;
+    montrer('ok');
+  } catch (err) {
+    erreur(err.message && err.message !== 'Failed to fetch' ? err.message : 'Connexion impossible, merci de réessayer.');
+  } finally {
+    bouton.disabled = false; bouton.textContent = 'Valider mon inscription';
+  }
+});
+
+if (CONTACT_EMAIL) $('#contact-rgpd').innerHTML = ' ou écrivez à <a href="mailto:' + esc(CONTACT_EMAIL) + '">' + esc(CONTACT_EMAIL) + '</a>';
+charger();
+</script>
+</body>
+</html>
